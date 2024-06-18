@@ -6,7 +6,8 @@ class WrongCredentials implements Exception {}
 
 class CustomError implements Exception {
   final String message;
-  final int errorCode;
+  // final bool loggedRequired; [this.loggedRequired = false]
 
-  CustomError(this.message, this.errorCode);
+  // final int errorCode;
+  CustomError(this.message, );
 }
