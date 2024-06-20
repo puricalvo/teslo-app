@@ -43,7 +43,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await Future.delayed(const Duration(milliseconds: 500));
 
     try {
-      final user = await authRepository.register(email, fullName, password);
+      final user = await authRepository.register(email, password, fullName);
       _setLoggedUser(user);
 
     } on CustomError catch (e) {

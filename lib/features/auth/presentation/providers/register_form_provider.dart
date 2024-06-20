@@ -108,9 +108,9 @@ class RegisterFormNotifier extends StateNotifier<RegisterFormState> {
   if (!state.isValid || !_arePasswordsEqual()) return;
 
     await registerUserCallback( 
-      state.fullName.value,
       state.email.value,
       state.password.value,
+      state.fullName.value,
     );
  
     
