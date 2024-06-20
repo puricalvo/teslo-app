@@ -39,8 +39,18 @@ class AuthNotifier extends StateNotifier<AuthState> {
     // state = state.copyWith(user: user, authStatus: AuthStatus.authenticated);
   }
 
-  void registerUser( String email, String password ) async {
-  
+  Future<void> registerUser( String email, String password, String fullName ) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    try {
+      final user = await authRepository.register(email, fullName, password);
+      _setLoggedUser(user);
+
+    } on CustomError catch (e) {
+      throw ( e.message);
+    } catch (e) {
+      throw ('Todos los campos son requeridos');
+    }
   }
 
   void checkAuthStatus() async {

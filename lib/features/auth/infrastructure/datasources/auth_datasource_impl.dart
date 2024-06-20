@@ -19,6 +19,7 @@ class AuthDataSourceImpl extends AuthDataSource {
     // TODO: implement checkAuthStatus
     throw UnimplementedError();
   }
+  
 
   @override
   Future<User> login(String email, String password) async {
@@ -46,9 +47,30 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<User> register(String email, String password, String fullName) {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future<User> register(String email, String password, String fullName) async {
+
+    try {
+      final response = await dio.post('/auth/register', data: {
+        'email': email,
+        'password': password,
+        'fullName':fullName,
+      });
+
+      final user = UserMapper.userJsonToEntity(response.data);
+      return user;
+
+    } on DioException catch (e) {
+      if ( e.response?.statusCode == 401 ){
+         throw CustomError(e.response?.data['message'] ?? 'Credenciales incorrectas' );
+      }
+      if ( e.type == DioExceptionType.connectionTimeout ) {
+        throw CustomError('Revisar conexión a internet');
+      }
+      throw Exception();
+    } catch (e) {
+      throw Exception();
+    }
   }
 
 }
+
