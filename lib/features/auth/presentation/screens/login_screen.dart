@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox( height: 80 ),
     
                 Container(
-                  height: size.height , // 80 los dos sizebox y 100 el ícono
+                  height: size.height -260, // 80 los dos sizebox y 100 el ícono
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: scaffoldBackgroundColor,
@@ -82,7 +82,7 @@ class _LoginForm extends ConsumerWidget {
         children: [
           const SizedBox( height: 50 ),
           Text('Login', style: textStyles.titleLarge ),
-          const SizedBox( height: 90 ),
+          const SizedBox( height: 50 ),
 
           CustomTextFormField(
             label: 'Correo',

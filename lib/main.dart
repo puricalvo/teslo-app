@@ -11,11 +11,13 @@ void main() async {
   );
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final appRouter = ref.watch( gotRouterProvider );
 
     return MaterialApp.router(
       routerConfig: appRouter,

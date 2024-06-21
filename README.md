@@ -16,3 +16,6 @@ Este es un proyecto para trabajar con:
 # Importante
 Recuerden leer y seguir la guía para montar el backend localmente.
 
+# Importante
+Crear el archivo .env y hacer una copia del .env.template , colocar la carpeta .env en el .gitignore y en en el archivo pubspec.yaml..... 
+
