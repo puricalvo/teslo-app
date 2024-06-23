@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:teslo_shop/features/auth/auth.dart';
+import 'package:teslo_shop/features/auth/presentation/providers/auth_provider.dart';
 import 'package:teslo_shop/features/products/products.dart';
 
 import 'app_router_notifier.dart';
@@ -11,7 +12,7 @@ final gotRouterProvider = Provider((ref) {
 
 
   return GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/splash',
     refreshListenable: goRouterNotifier,
     routes: [
       ///* Primera pantalla
@@ -39,10 +40,23 @@ final gotRouterProvider = Provider((ref) {
 
     redirect: (context, state) {
       
-      print(state.matchedLocation );
+      final isGoingTo = state.matchedLocation; // A que pagina va la persona..
+      final authStatus = goRouterNotifier.authStatus;// Si esta autenticado o no...
 
+      if ( isGoingTo == '/splash' && authStatus == AuthStatus.checking ) return null; // si va a una pagina y si se está autenticado no hace nada...
 
-      // return '/';
+      if ( authStatus == AuthStatus.notAuthenticated ) {
+        if ( isGoingTo == '/login' || isGoingTo == 'register' ) return null; // Aqui se deja pasar a cualquier ruta de las dos...
+
+        return '/login';
+      }
+
+      if ( authStatus == AuthStatus.authenticated ) {
+        if ( isGoingTo == '/login' || isGoingTo == 'register' || isGoingTo == '/splash' ) {
+          return '/';
+        } // si esta autenticado lo mando a la pantalla de splash y no puede ir a esas rutas...
+      }
+
       return null;
     },
   );
