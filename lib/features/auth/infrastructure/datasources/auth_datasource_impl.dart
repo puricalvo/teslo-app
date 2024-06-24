@@ -88,6 +88,9 @@ class AuthDataSourceImpl extends AuthDataSource {
       if ( e.type == DioExceptionType.connectionTimeout ) {
         throw CustomError('Revisar conexión a internet');
       }
+      if ( e.response?.statusCode == 400 ){
+         throw CustomError(e.response?.data['message'] ?? 'El correo ya se encuentra registrado' );
+      }
       throw Exception();
     } catch (e) {
       throw Exception();
