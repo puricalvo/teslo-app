@@ -38,7 +38,7 @@ final gotRouterProvider = Provider((ref) {
       ),
 
       GoRoute(
-        path: '/product/:id',
+        path: '/product/:id', // /product/new
         builder: (context, state) =>  ProductScreen(
           productId: state.pathParameters['id'] ?? 'no-id',
         ),
