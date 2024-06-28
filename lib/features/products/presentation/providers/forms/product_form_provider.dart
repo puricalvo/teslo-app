@@ -22,8 +22,6 @@ final productFormProvider = StateNotifierProvider.autoDispose.family<ProductForm
 );
 
 
-
-
 // NOTIFIER
 class ProductFormNotifier extends StateNotifier<ProductFormState> {
 
@@ -88,6 +86,14 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
       ]),
     );
   }
+
+  void updateProductImage( String path ) {
+    state = state.copywith(
+      images: [...state.images, path ]
+    );
+  }
+
+
 
   void onTitleChanged( String value ) {
     state = state.copywith(
