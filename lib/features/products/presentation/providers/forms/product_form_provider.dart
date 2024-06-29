@@ -77,7 +77,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
 
 
   void _touchedEverything() {
-    state = state.copywith(
+    state = state.copyWith(
       isFormValid: Formz.validate([
         Title.dirty(state.title.value),
         Slug.dirty(state.slug.value),
@@ -88,7 +88,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   }
 
   void updateProductImage( String path ) {
-    state = state.copywith(
+    state = state.copyWith(
       images: [...state.images, path ]
     );
   }
@@ -96,7 +96,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
 
 
   void onTitleChanged( String value ) {
-    state = state.copywith(
+    state = state.copyWith(
       title: Title.dirty(value),
       isFormValid: Formz.validate([
         Title.dirty(value),
@@ -108,7 +108,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   }
 
   void onSlugChanged( String value ) {
-    state = state.copywith(
+    state = state.copyWith(
       slug: Slug.dirty(value),
       isFormValid: Formz.validate([
         Title.dirty(state.title.value),
@@ -120,7 +120,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   }
 
   void onPriceChanged( double value ) {
-    state = state.copywith(
+    state = state.copyWith(
       price: Price.dirty(value),
       isFormValid: Formz.validate([
         Title.dirty(state.title.value),
@@ -132,7 +132,7 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   }
 
   void onStockChanged( int value ) {
-    state = state.copywith(
+    state = state.copyWith(
       inStock: Stock.dirty(value),
       isFormValid: Formz.validate([
         Title.dirty(state.title.value),
@@ -144,25 +144,25 @@ class ProductFormNotifier extends StateNotifier<ProductFormState> {
   }
 
   void onSizeChanged( List<String> sizes ) {
-    state = state.copywith(
+    state = state.copyWith(
       sizes: sizes
     );
   }
 
   void onGenderChanged( String gender ) {
-    state = state.copywith(
+    state = state.copyWith(
       gender: gender
     );
   }
 
   void onDescriptionChanged( String description ) {
-    state = state.copywith(
+    state = state.copyWith(
       description: description
     );
   }
 
   void onTagsChanged( String tags ) {
-    state = state.copywith(
+    state = state.copyWith(
       tags: tags
     );
   }
@@ -203,7 +203,7 @@ class ProductFormState {
     this.images = const[]
   });
 
-  ProductFormState copywith({
+  ProductFormState copyWith({
      bool? isFormValid,
      String? id,
      Title? title,

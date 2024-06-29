@@ -49,7 +49,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
     try {
 
       if ( state.id == 'new' ) {
-        state = state.copywith(
+        state = state.copyWith(
           isLoading: false,
           product: newEmptyProduct(),
         );
@@ -58,7 +58,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
 
       final product = await productsRepository.getProductsById(state.id);
 
-      state = state.copywith(
+      state = state.copyWith(
         isLoading: false,
         product: product
       );
@@ -89,7 +89,7 @@ class ProductState {
     this.isSaving = false,
   });
 
-  ProductState copywith({
+  ProductState copyWith({
    String? id,
    Product? product,
    bool? isLoading,
